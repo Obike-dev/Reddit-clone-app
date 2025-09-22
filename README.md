@@ -1,16 +1,29 @@
-# reddit_clone_app
+A Reddit-inspired mobile app built with Flutter and Riverpod, featuring authentication, post creation, voting, and comments — all in a clean, responsive UI.
 
-A new Flutter project.
+Features
 
-## Getting Started
+🔐 Authentication (Sign up, Log in, Guest mode)
 
-This project is a starting point for a Flutter application.
+📝 Create Posts with text, images, or links
 
-A few resources to get you started if this is your first Flutter project:
+👍👎 Upvote & Downvote system
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+💬 Comments on posts
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🏷️ Communities (join, leave, create)
+
+🎖️ Awards (give awards to posts)
+
+🎨 Modern, responsive Flutter UI
+
+
+Framework: Flutter
+
+State Management: Riverpod
+
+Backend: Firebase (Auth, Firestore, Storage, Cloud Functions)
+
+Other: Responsive Framework, Google_auth, Dart
+
+
+
