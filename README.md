@@ -26,6 +26,8 @@ Backend: Firebase (Auth, Firestore, Storage, Cloud Functions)
 Other: Responsive Framework, Google_auth, Dart
 
 
+Watch the short demo video of the entire project here
+https://drive.google.com/file/d/15I-CX3EW_dfHvFQkwJVhc3VnUi6zNjBg/view?usp=drive_link
 
 <img width="510" height="1075" alt="Screenshot 2025-09-18 151841" src="https://github.com/user-attachments/assets/47dc195d-4083-4135-936e-c9c187845eee" />
 
