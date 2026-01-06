@@ -21,16 +21,12 @@ class PostCard extends ConsumerWidget {
     required this.post,
   });
 
-  void goToCommunityPage(BuildContext context) =>
-      Routemaster.of(context).push('/r/${post.communityName}');
+  void goToCommunityPage(BuildContext context) => Routemaster.of(context).push('/r/${post.communityName}');
 
-  void goToUserProfile(BuildContext context) =>
-      Routemaster.of(context).push('/u/${post.postAuthorUid}');
+  void goToUserProfile(BuildContext context) => Routemaster.of(context).push('/u/${post.postAuthorUid}');
 
   void deletePost(WidgetRef ref, BuildContext context) {
-    ref
-        .read(PostProviders.postControllerProvider.notifier)
-        .deletePost(context, post.id);
+    ref.read(PostProviders.postControllerProvider.notifier).deletePost(context, post.id);
   }
 
   void upVotePost(WidgetRef ref) {
@@ -42,9 +38,7 @@ class PostCard extends ConsumerWidget {
   }
 
   void awardPost(WidgetRef ref, String award, BuildContext context) {
-    ref
-        .read(PostProviders.postControllerProvider.notifier)
-        .awardPost(post: post, award: award, context: context);
+    ref.read(PostProviders.postControllerProvider.notifier).awardPost(post: post, award: award, context: context);
   }
 
   Future<void> launchUrlFunction(String url) async {
@@ -96,7 +90,7 @@ class PostCard extends ConsumerWidget {
         constraints: BoxConstraints(
           maxWidth: responsiveValue<double>(
             context,
-            550, // mobile = full width
+            550,
             const [
               Condition.between(
                 start: 0,
@@ -150,10 +144,8 @@ class PostCard extends ConsumerWidget {
                             context: context,
                             builder: (context) {
                               return ReusableAlertDialog(
-                                confirmationText:
-                                    'Are you sure you want to delete this post?',
-                                onPressedAction: () =>
-                                    deletePost(ref, parentContext),
+                                confirmationText: 'Are you sure you want to delete this post?',
+                                onPressedAction: () => deletePost(ref, parentContext),
                               );
                             },
                           );
@@ -181,10 +173,7 @@ class PostCard extends ConsumerWidget {
               Text(
                 post.title
                     .split(' ')
-                    .map((word) => word.isNotEmpty
-                        ? word[0].toUpperCase() +
-                            word.substring(1).toLowerCase()
-                        : '')
+                    .map((word) => word.isNotEmpty ? word[0].toUpperCase() + word.substring(1).toLowerCase() : '')
                     .join(' '),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
@@ -265,9 +254,7 @@ class PostCard extends ConsumerWidget {
                   rowIcons(
                     icon: Constants.up,
                     onPressed: user.isGuest ? () {} : () => upVotePost(ref),
-                    color: post.upVotes.contains(user.uid)
-                        ? Pallete.blueColor
-                        : null,
+                    color: post.upVotes.contains(user.uid) ? Pallete.blueColor : null,
                   ),
                   Text(
                     '${post.upVotes.isEmpty ? '' : post.upVotes.length} ',
@@ -284,7 +271,7 @@ class PostCard extends ConsumerWidget {
                       fontSize: 17,
                     ),
                   ),
-                  const SizedBox(width: 15),
+                  // const SizedBox(width: 10),
                   Text(
                     '${post.downVotes.isEmpty ? '' : post.downVotes.length} ',
                     style: const TextStyle(
@@ -295,9 +282,7 @@ class PostCard extends ConsumerWidget {
                   rowIcons(
                     onPressed: user.isGuest ? () {} : () => donwVotePost(ref),
                     icon: Constants.down,
-                    color: post.downVotes.contains(user.uid)
-                        ? Pallete.redColor
-                        : null,
+                    color: post.downVotes.contains(user.uid) ? Pallete.redColor : null,
                   ),
                   const Spacer(),
                   TextButton.icon(
@@ -340,8 +325,7 @@ class PostCard extends ConsumerWidget {
                                   )
                                 : GridView.builder(
                                     shrinkWrap: true,
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 5,
                                     ),
                                     itemCount: user.awards.length,
@@ -350,10 +334,8 @@ class PostCard extends ConsumerWidget {
                                       return Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: InkWell(
-                                          onTap: () =>
-                                              awardPost(ref, award, context),
-                                          child: Image.asset(
-                                              Constants.awards[award]!),
+                                          onTap: () => awardPost(ref, award, context),
+                                          child: Image.asset(Constants.awards[award]!),
                                         ),
                                       );
                                     },

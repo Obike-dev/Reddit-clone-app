@@ -12,10 +12,7 @@ class UserProfileDrawer extends ConsumerWidget {
     ref.read(AuthProviders.authControllerProvider.notifier).logOut();
   }
 
-  ListTile listTile(
-      {required Icon icon,
-      required String title,
-      required void Function()? onTap}) {
+  ListTile listTile({required Icon icon, required String title, required void Function()? onTap}) {
     return ListTile(
       onTap: onTap,
       leading: Padding(
@@ -79,8 +76,7 @@ class UserProfileDrawer extends ConsumerWidget {
                         context: context,
                         builder: (context) {
                           return ReusableAlertDialog(
-                            confirmationText:
-                                'Are you sure you want to log out of this application?',
+                            confirmationText: 'Are you sure you want to log out of this application?',
                             onPressedAction: () => logUserOut(ref),
                           );
                         },
@@ -89,11 +85,11 @@ class UserProfileDrawer extends ConsumerWidget {
                   )
                 ],
               ),
-              Switch.adaptive(
-                value: ref.watch(themeNotifierProvider).mode == ThemeMode.dark,
-                onChanged: (value) => toggleTheme(ref),
-                activeColor: Colors.greenAccent,
-              ),
+              // Switch.adaptive(
+              //   value: ref.watch(themeNotifierProvider).mode == ThemeMode.dark,
+              //   onChanged: (value) => toggleTheme(ref),
+              //   activeColor: Colors.greenAccent,
+              // ),
             ],
           ),
         ),

@@ -21,6 +21,10 @@ class CommunityRepository {
       );
   FutureVoid createCommunity(Community community) async {
     try {
+      final name = community.name.trim();
+      if (name.contains(' ')) {
+        throw 'Community name cannot contain spaces';
+      }
       final communityDocument = await _communities.doc(community.name).get();
       if (communityDocument.exists) {
         throw 'Community with this name already exists';
@@ -63,24 +67,21 @@ class CommunityRepository {
   }
 
   Stream<Community> getCommunityByName(String communityName) {
-    return _communities.doc(communityName).snapshots().map(
-          (snapshot) => Community.fromMap(
-            snapshot.data() as Map<String, dynamic>,
-          ),
-        );
+    return _communities.doc(communityName).snapshots().map((snapshot) {
+      return Community.fromMap(
+        snapshot.data() as Map<String, dynamic>,
+      );
+    });
   }
 
   Stream<List<Post>> getCommunityPosts(String communityName) {
-    return _posts
-        .where('communityName', isEqualTo: communityName)
-        .snapshots()
-        .map((community) => community.docs
-            .map(
-              (communityData) => Post.fromMap(
-                communityData.data() as Map<String, dynamic>,
-              ),
-            )
-            .toList());
+    return _posts.where('communityName', isEqualTo: communityName).snapshots().map((community) => community.docs
+        .map(
+          (communityData) => Post.fromMap(
+            communityData.data() as Map<String, dynamic>,
+          ),
+        )
+        .toList());
   }
 
   Stream<List<Community>> searchCommunity(String query) {
@@ -121,8 +122,7 @@ class CommunityRepository {
     required bool join, // true = join, false = leave
   }) async {
     try {
-      final DocumentSnapshot<Object?> doc =
-          await _communities.doc(community.id).get();
+      final DocumentSnapshot<Object?> doc = await _communities.doc(community.id).get();
       final List<String> members = List<String>.from(doc['members'] ?? []);
 
       final bool isMember = members.contains(userUid);
